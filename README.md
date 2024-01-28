@@ -1,109 +1,78 @@
 
 
 
+# Stratox.js - template engine
 
-# Stratox.js - Template library for building user interfaces
+**Stratox.js is a user-friendly JavaScript template engine that helps you easily build template components and views.**
 
-Stratox.js, an modern JavaScript library, facilitates the development of templates and user interfaces (UI) with a focus on components and views, offering a flexible and efficient approach to web development.
+The Stratox template library is created using up-to-date methods, keeping its size at around 6 kb when bundled and minimized (gzipped). It works independently, smoothly running on all platforms without needing anything else. Stratox.js is a smart pick for applications and websites, ensuring great performance and quick load time. It's versatile, letting you load views asynchronously (with optional caching) or bundle them conveniently into your main JavaScript file.
 
-We encourage developers to prioritize JavaScript and HTML, as they should, instead of grappling with the complexities of new markup and platform-specific functions, which in the end only lead to the burden of unnecessary abstractions. Stratox harnesses JavaScript's core capabilities, promoting a practical and fundamental approach to modern web development.
+## Documentation
+**[You can find the full Startox documentation here](https://stratox.wazabii.se/)**
+
+#### The documentation is divided into several sections:
+* [Why Stratox.js?](https://stratox.wazabii.se/)
+* [Installation](https://stratox.wazabii.se/installation)
+* [Basic example](https://stratox.wazabii.se/template-engine/basic-example)
+* [Show template view](https://stratox.wazabii.se/template-engine/show-templates)
+* [Create template view](https://stratox.wazabii.se/template-engine/create-templates)
+* [Update template view](https://stratox.wazabii.se/template-engine/updating-views)
+* [Install plugins](https://stratox.wazabii.se/template-engine/plugins)
+* [Form builder](https://stratox.wazabii.se/form-builder/form-builder)
+* [Custom form template](https://stratox.wazabii.se/form-builder/custom-form-template)
+* [Container](https://stratox.wazabii.se/advanced-features/container)
+* [Template view functions](https://stratox.wazabii.se/advanced-features/template-view-functions)
+
+## Why Startox
+
+### User-Friendly
+Stratox is very user-friendly because it lets you prioritize JavaScript and HTML instead of grappling with the complexities of new markup and platform-specific functions, which in the end only lead to the burden of unnecessary abstractions. Stratox harnesses JavaScript's core capabilities, promoting a practical and fundamental approach to modern web development.
 
 ### Platform-agnostic nature
 Stratox.js doesn't discriminate or judge based on the platform you use, and it works seamlessly on all platforms and depends on nothing but it self.
 
+### Full accessibility support
+Moreover, by allowing developers to write regular HTML with the right semantics, Stratox.js ensures that the resulting interfaces are fully **accessible**. This dual emphasis on simplicity and accessibility makes Stratox.js a powerful tool for creating user-friendly and inclusive web applications.
 
-## Installation
-```
-npm i stratox
-```
-*Or just download the zip and import Stratox.js file*
+### Why Stratox.js?
+- **High Performance:** Stratox.js is optimized for performance.
+- **Great Load Speed:** Experience swift loading times for a seamless user experience.
+- **Optimized:** A finely-tuned library that prioritizes efficiency.
+- **User-Friendly:** Easy to use, making development a breeze.
+- **Platform-Agnostic:** Works seamlessly across all platforms.
+- **Template Engine:** Facilitates the creation of Views, components, and UI elements.
+- **Form Builder:** Follows HTML semantics, supporting nested form names.
+- **HTML Semantics:** Follow HTML semantics if you wish
+- **Full Accessibility Support:** You can make your app inclusive and accessible for all.
+- **Container Library:** Designed for seamless communication between template views and your project.
+- **Async and bundle:** Support asynchronous loading of or bundling of views
 
+### Targeting
+- **Single-Page Application (SPA):** Ideal for creating SPAs with enhanced user experiences.
+- **Cross-Platform Compatibility:** Apache Cordova (PhoneGap), Xamarin, Electron, Ionic, and similar.
+- **Enhancing Static HTML:** Easily integrates with existing static HTML structures.
+- **Backend Language Integration:** Easily integrates with various backend languages.
 
-## Full documentation
-The initial documentation draft is ready.
-### [Read the documentation](https://wazabii.se/stratoxjs/)
-
-
-## Quick guide / Preview
-This is just a quick guide to preview how easy it is. Visit the link above for the full documention.
-
-### index.html
-Begin by adding an element to the HTML document.
-*/examples/index.html*
-```html
-<div id="ingress"></div>
-```
-
-### Configure 
-Add the configuration bellow in you main js file, some where it will globally execute.
-```js
-Stratox.setConfigs({
-	directory: "/absolute/path/to/views/",
-	cache: false, // Automatically clear cache if is false on dynamic import
-	popegation: true // Automatic DOM popegation protection
-});
-```
-
-**directory:**  Directory path for asynchronously or imported templates. Either specify an absolute directory path or if opting for a relative path, keep in mind it starts from the Stratox.js file location.
-
-### Template files
-First, we need to create a template for use. There are multiple ways to do this, but for this example, I'll demonstrate the most straightforward method. More examples will follow.
-
-To begin, create a template file, such as **"/src/views/ingress.js"**. The file name will serve as the template identifier if it's loaded dynamically/asynchronously, which is the default behavior for templates that utilize separate files without pre importing.
-
-#### Example template:
-```js
-// You can name the function whatever. 
-// The important part is that at least one function must be exported
-export function ingressComponent(data, container, helper, builder) {
-
-	// In this example I am using Javacript Template literals for a clean look.
-	// But as this is regular Javacript you can output it as you want.
-	
-	let out = `
-	<header class="relative">
-		<h1 class="title">${data.headline}</h1>
-		<p>${data.content}</p>
-	</header>
-	`;
-	return out;
-}
-```
-What's fantastic is that you can create your template using plain JavaScript. I've also provided some handy helper functions to simplify your life. For instance, you can utilize the argument "helper" to access to the StratoxDom library, which offers a range of helpful functions.
-
-###  Lets use the template
-Once the template is created we only need to use it.
-```js
-let stratox = new Stratox("#ingress");
-
-let ingress = stratox.view("ingress", {
-    headline: "Lorem ipsum dolor",
-    content: "Lorem ipsum dolor sit amet",
-    tags: ["Tag 1", "Tag 2", "Tag 3"]
+## Example
+Below is a just **basic** example to demonstrate how easy it is to build a template view/component. There are a lot more examples in the [documentation](https://stratox.wazabii.se/).
+```php
+Stratox.setComponent("ingress", function(data, container, helper, builder) {
+    let out = `
+    <header class="mb-50 align-center">
+        <h1>${data.headline}</h1>
+        <p>${data.content}</p>
+    </header>
+    `;
+    return out;
 });
 
-stratox.execute(function(observer) {
-	// Callback...
+const stratox = new Stratox("#app");
+
+stratox.view("ingress", {
+  headline: "Lorem ipsum dolor",
+  content: "Lorem ipsum dolor sit amet"
 });
 
+stratox.execute();
 ```
-That is it... As you can see it is very easy if you know HTML and javascript.
-
-
-### Update the information
-Want to update the templates information? 
-```js
-ingress.set({ headline: "Headline updated once!" });
-stratox.update();
-
-// Or...
-stratox.view("ingress", { headline: "Headline updated twize!" });
-stratox.update();
-
-// Or...
-stratox.update("ingress", function(obj) {
-	obj.data.headline = "Headline updated thrice!";
-});
-```
-The text has been updated three time with different techniques. Super easy. More example is coming when docs site is done.
-
+*[Click here to see the result](https://codepen.io/wazabii8/pen/bGZgPNo)*
